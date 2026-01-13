@@ -1,19 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: 'Nunito', sans-serif;
 
-  --color-accent-50: #f5f3ff;
-  --color-accent-100: #ede9fe;
-  --color-accent-200: #ddd6fe;
-  --color-accent-300: #c4b5fd;
-  --color-accent-400: #a78bfa;
-  --color-accent-500: #8b5cf6;
-  --color-accent-600: #7c3aed;
-  --color-accent-700: #6d28d9;
-  --color-accent-800: #5b21b6;
-  --color-accent-900: #4c1d95;
+  /* Calm Sage - Primary accent color */
+  --color-sage-50: #f7f9f7;
+  --color-sage-100: #e8f0e9;
+  --color-sage-200: #d0e0d5;
+  --color-sage-300: #b0c9b7;
+  --color-sage-400: #8fb29a;
+  --color-sage-500: #749e81;
+  --color-sage-600: #5d846a;
+  --color-sage-700: #4a6b56;
+  --color-sage-800: #3e5848;
+  --color-sage-900: #33473a;
+
+  /* Soft Lavender - Secondary accent */
+  --color-lavender-50: #faf8fc;
+  --color-lavender-100: #f3ebfa;
+  --color-lavender-200: #e6d6f4;
+  --color-lavender-300: #d1b9ea;
+  --color-lavender-400: #b69ddb;
+  --color-lavender-500: #9d82cb;
+  --color-lavender-600: #8569ba;
+  --color-lavender-700: #6f569d;
+  --color-lavender-800: #5d4884;
+  --color-lavender-900: #4d3c6d;
+
+  /* Soft Blue - Tertiary accent */
+  --color-softblue-50: #f7f9fb;
+  --color-softblue-100: #eef4f9;
+  --color-softblue-200: #deeaf4;
+  --color-softblue-300: #c5dced;
+  --color-softblue-400: #a5c9e3;
+  --color-softblue-500: #87b2d9;
+  --color-softblue-600: #6b9ac9;
+  --color-softblue-700: #5580b6;
+  --color-softblue-800: #476b9c;
+  --color-softblue-900: #3b5884;
 }
 
 @layer base {
@@ -23,6 +48,33 @@
 
   body {
     min-height: 100vh;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  /* Smooth scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #d0e0d5;
+    border-radius: 4px;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: #4a6b56;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b0c9b7;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #5d846a;
   }
 }

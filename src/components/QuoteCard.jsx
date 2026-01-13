@@ -40,24 +40,24 @@ function QuoteCard() {
   }, [])
 
   return (
-    <div className="bg-linear-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-lg p-6 lg:p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+    <div className="bg-gradient-to-br from-white to-sage-50/50 dark:from-gray-800/50 dark:to-lavender-950/30 backdrop-blur-sm rounded-2xl shadow-sm p-6 lg:p-8 hover:shadow-md transition-all duration-500 border border-sage-100 dark:border-sage-800/30">
       {/* Floating Icon */}
-      <div className="text-center text-5xl mb-4 animate-float">✨</div>
+      <div className="text-center text-4xl mb-4 opacity-80">✨</div>
 
       {/* Quote Text */}
       {isLoading ? (
-        <p className="text-gray-600 dark:text-gray-300 text-center text-lg leading-relaxed min-h-[80px] flex items-center justify-center">
+        <p className="text-gray-500 dark:text-gray-300 text-center text-lg leading-relaxed min-h-[80px] flex items-center justify-center">
           Loading inspiration...
         </p>
       ) : (
-        <p className="text-gray-700 dark:text-gray-200 text-center text-lg leading-relaxed min-h-[80px] italic">
+        <p className="text-gray-600 dark:text-gray-200 text-center text-lg leading-relaxed min-h-[80px] italic">
           "{quote.text}"
         </p>
       )}
 
       {/* Author */}
       {quote.author && !isLoading && (
-        <p className="text-gray-500 dark:text-gray-400 text-center text-sm mt-4">
+        <p className="text-gray-400 dark:text-gray-400 text-center text-sm mt-4">
           — {quote.author}
         </p>
       )}
@@ -66,7 +66,7 @@ function QuoteCard() {
       <button
         onClick={fetchQuote}
         disabled={isLoading}
-        className="w-full mt-6 bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 disabled:opacity-50 text-white font-semibold py-3 px-4 rounded-lg transition-all hover:shadow-md"
+        className="w-full mt-6 bg-gradient-to-r from-sage-400 via-sage-500 to-softblue-400 dark:from-sage-600 dark:via-lavender-600 dark:to-sage-600 hover:from-sage-500 hover:via-sage-600 hover:to-softblue-500 dark:hover:from-sage-700 dark:hover:via-lavender-700 dark:hover:to-sage-700 disabled:opacity-50 text-white font-medium py-3 px-4 rounded-xl transition-all duration-300 hover:shadow-sm active:scale-[0.98]"
       >
         🔄 New Quote
       </button>
