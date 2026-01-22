@@ -105,6 +105,22 @@ function App() {
 
   const handleSaveMood = (mood) => {
     const now = new Date()
+    const todayStr = now.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    })
+
+    // Check if mood already exists for today
+    const existingIndex = moodHistory.findIndex(m => {
+      const moodDate = new Date(m.date)
+      return moodDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }) === todayStr
+    })
+
     const moodEntry = {
       mood,
       date: now.toISOString(),
@@ -117,7 +133,16 @@ function App() {
         minute: '2-digit'
       })
     }
-    setMoodHistory([moodEntry, ...moodHistory])
+
+    if (existingIndex !== -1) {
+      // Replace existing mood for today
+      const updatedMoodHistory = [...moodHistory]
+      updatedMoodHistory[existingIndex] = moodEntry
+      setMoodHistory(updatedMoodHistory)
+    } else {
+      // Add new mood entry
+      setMoodHistory([moodEntry, ...moodHistory])
+    }
   }
 
   const handleDeleteEntry = (id) => {
