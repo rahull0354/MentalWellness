@@ -262,6 +262,7 @@ function App() {
   const [moodHistory, setMoodHistory] = useState([])
   const [showCalendar, setShowCalendar] = useState(false)
   const [activeTab, setActiveTab] = useState('journal')
+  const [isInitialLoad, setIsInitialLoad] = useState(true)
 
   // Load data from localStorage on mount
   useEffect(() => {
@@ -272,6 +273,9 @@ function App() {
     if (savedEntries) setEntries(JSON.parse(savedEntries))
     if (savedMoods) setMoodHistory(JSON.parse(savedMoods))
     if (savedTheme) setDarkMode(JSON.parse(savedTheme))
+
+    // Mark initial load complete
+    setIsInitialLoad(false)
   }, [])
 
   // Apply dark mode
@@ -281,18 +285,24 @@ function App() {
     } else {
       document.documentElement.classList.remove('dark')
     }
-    localStorage.setItem('darkMode', JSON.stringify(darkMode))
-  }, [darkMode])
+    if (!isInitialLoad) {
+      localStorage.setItem('darkMode', JSON.stringify(darkMode))
+    }
+  }, [darkMode, isInitialLoad])
 
   // Save entries to localStorage
   useEffect(() => {
-    localStorage.setItem('journalEntries', JSON.stringify(entries))
-  }, [entries])
+    if (!isInitialLoad) {
+      localStorage.setItem('journalEntries', JSON.stringify(entries))
+    }
+  }, [entries, isInitialLoad])
 
   // Save mood history to localStorage
   useEffect(() => {
-    localStorage.setItem('moodHistory', JSON.stringify(moodHistory))
-  }, [moodHistory])
+    if (!isInitialLoad) {
+      localStorage.setItem('moodHistory', JSON.stringify(moodHistory))
+    }
+  }, [moodHistory, isInitialLoad])
 
   const toggleDarkMode = () => setDarkMode(!darkMode)
 
