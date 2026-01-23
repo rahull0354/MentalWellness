@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import CalendarSection from './components/CalendarSection'
 import QuoteCard from './components/QuoteCard'
+import Navigation from './components/Navigation'
+import TrendsSection from './components/TrendsSection'
 
 // Mood options with emojis
 const MOODS = [
@@ -50,14 +52,14 @@ function JournalEntryForm({ moods, tags, onSaveEntry }) {
     <div className="space-y-4">
       {/* Mood Selector */}
       <div>
-        <p className="text-gray-500 dark:text-purple-200 text-sm mb-2">Add how you're feeling:</p>
-        <div className="flex flex-wrap gap-2">
+        <p className="text-gray-500 dark:text-purple-200 mb-2.5">Add how you're feeling:</p>
+        <div className="flex flex-wrap gap-2.5">
           {moods.map((mood) => (
             <button
               key={mood.id}
               onClick={() => setSelectedMood(mood.id)}
               title={mood.label}
-              className={`w-10 h-10 text-xl rounded-lg border-2 transition-all duration-300 hover:scale-110 ${
+              className={`w-12 h-12 text-xl rounded-lg border-2 transition-all duration-300 hover:scale-110 ${
                 selectedMood === mood.id
                   ? 'border-fuchsia-500 bg-fuchsia-100 dark:bg-fuchsia-900/70'
                   : 'border-transparent bg-violet-100 dark:bg-purple-900/40 hover:bg-purple-100 dark:hover:bg-purple-900/60'
@@ -71,13 +73,13 @@ function JournalEntryForm({ moods, tags, onSaveEntry }) {
 
       {/* Tags */}
       <div>
-        <p className="text-gray-500 dark:text-purple-200 text-sm mb-2">Tags:</p>
+        <p className="text-gray-500 dark:text-purple-200 mb-2.5">Tags:</p>
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
             <button
               key={tag.id}
               onClick={() => handleTagToggle(tag.id)}
-              className={`px-3 py-1.5 rounded-lg font-medium transition-all duration-300 text-sm ${
+              className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 text-sm ${
                 selectedTags.includes(tag.id)
                   ? 'bg-linear-to-r from-violet-500 to-fuchsia-500 dark:from-violet-600 dark:to-fuchsia-600 text-white'
                   : 'bg-violet-100 dark:bg-purple-900/40 text-gray-600 dark:text-purple-200 hover:bg-purple-100 dark:hover:bg-purple-900/60'
@@ -94,7 +96,7 @@ function JournalEntryForm({ moods, tags, onSaveEntry }) {
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Write your thoughts..."
-        className="w-full min-h-40 p-4 rounded-xl border-2 border-violet-200 dark:border-purple-500/50 bg-violet-50 dark:bg-purple-900/30 text-gray-800 dark:text-white focus:outline-none focus:border-fuchsia-400 focus:ring-2 focus:ring-fuchsia-100 dark:focus:ring-fuchsia-900/50 transition-all duration-300 resize-y"
+        className="w-full min-h-56 p-4 rounded-xl border-2 border-violet-200 dark:border-purple-500/50 bg-violet-50 dark:bg-purple-900/30 text-gray-800 dark:text-white focus:outline-none focus:border-fuchsia-400 focus:ring-2 focus:ring-fuchsia-100 dark:focus:ring-fuchsia-900/50 transition-all duration-300 resize-y"
       />
 
       {/* Save Button */}
@@ -113,7 +115,7 @@ function MemoryCard({ entry, moods, tags, onDelete }) {
   const getMoodEmoji = (moodId) => moods.find(m => m.id === moodId)?.emoji || ''
 
   return (
-    <div className="bg-violet-50 dark:bg-purple-900/30 p-4 rounded-xl border-l-4 border-fuchsia-400 hover:shadow-sm transition-all duration-300">
+    <div className="bg-violet-50 dark:bg-purple-900/30 p-3 rounded-lg border-l-4 border-fuchsia-400 hover:shadow-sm transition-all duration-300">
       <div className="flex justify-between items-start mb-2">
         <span className="text-xs text-gray-500 dark:text-purple-300">
           {entry.localDate}
@@ -179,19 +181,19 @@ function WeeklyMood({ moodHistory, moods }) {
   const getMoodEmoji = (moodId) => moods.find(m => m.id === moodId)?.emoji || ''
 
   return (
-    <div className="grid grid-cols-7 gap-2">
+    <div className="grid grid-cols-7 gap-1.5">
       {weekData.map((day, index) => (
         <div
           key={index}
-          className="bg-purple-100 dark:bg-purple-900/40 p-2 rounded-lg text-center hover:bg-fuchsia-100 dark:hover:bg-purple-900/60 transition-colors duration-300 border border-purple-200 dark:border-purple-500/50"
+          className="bg-purple-100 dark:bg-purple-900/40 p-1.5 rounded-lg text-center hover:bg-fuchsia-100 dark:hover:bg-purple-900/60 transition-colors duration-300 border border-purple-200 dark:border-purple-500/50"
         >
-          <span className="block text-xs font-medium text-gray-500 dark:text-purple-300 mb-1">
+          <span className="block text-xs font-medium text-gray-500 dark:text-purple-300 mb-0.5">
             {day.day}
           </span>
           {day.mood ? (
-            <span className="text-xl">{getMoodEmoji(day.mood)}</span>
+            <span className="text-lg">{getMoodEmoji(day.mood)}</span>
           ) : (
-            <span className="text-gray-400 dark:text-purple-400 text-sm">—</span>
+            <span className="text-gray-400 dark:text-purple-400 text-xs">—</span>
           )}
         </div>
       ))}
@@ -246,7 +248,7 @@ function QuickInsights({ moodHistory, entries, moods }) {
           key={index}
           className="bg-fuchsia-100 dark:bg-purple-900/40 p-3 rounded-lg border-l-4 border-fuchsia-400"
         >
-          <span className="text-lg mr-1">{insight.icon}</span>
+          <span className="text-lg mr-2">{insight.icon}</span>
           <span className="text-sm text-gray-700 dark:text-purple-100">{insight.text}</span>
         </div>
       ))}
@@ -259,6 +261,7 @@ function App() {
   const [entries, setEntries] = useState([])
   const [moodHistory, setMoodHistory] = useState([])
   const [showCalendar, setShowCalendar] = useState(false)
+  const [activeTab, setActiveTab] = useState('journal')
 
   // Load data from localStorage on mount
   useEffect(() => {
@@ -380,36 +383,42 @@ function App() {
         ? 'bg-linear-to-br from-violet-950 via-purple-950 to-fuchsia-950'
         : 'bg-linear-to-br from-violet-50 via-purple-50 to-fuchsia-50'
     }`}>
-      <div className="max-w-6xl mx-auto px-4 py-6 lg:py-8">
+      <div className="max-w-7xl mx-auto px-4 py-5 lg:py-6">
         {/* Header with Theme Toggle */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center mb-5">
           <div>
-            <h1 className="text-3xl lg:text-4xl font-bold bg-linear-to-r from-violet-600 via-purple-600 to-fuchsia-600 dark:from-violet-400 dark:via-purple-400 dark:to-fuchsia-400 bg-clip-text text-transparent">
+            <h1 className="text-2xl lg:text-3xl font-bold bg-linear-to-r from-violet-600 via-purple-600 to-fuchsia-600 dark:from-violet-400 dark:via-purple-400 dark:to-fuchsia-400 bg-clip-text text-transparent">
               My Journal
             </h1>
-            <p className="text-gray-500 dark:text-purple-300 mt-1">
+            <p className="text-gray-500 dark:text-purple-300 mt-1 text-sm">
               {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
             </p>
           </div>
           <button
             onClick={toggleDarkMode}
-            className="bg-linear-to-r from-violet-500 to-fuchsia-500 dark:from-violet-600 dark:to-fuchsia-600 hover:from-violet-600 hover:to-fuchsia-600 dark:hover:from-violet-700 dark:hover:to-fuchsia-700 text-white p-3 rounded-xl shadow-sm transition-all duration-300 hover:shadow-md"
+            className="bg-linear-to-r from-violet-500 to-fuchsia-500 dark:from-violet-600 dark:to-fuchsia-600 hover:from-violet-600 hover:to-fuchsia-600 dark:hover:from-violet-700 dark:hover:to-fuchsia-700 text-white p-2 rounded-xl shadow-sm transition-all duration-300 hover:shadow-md"
             aria-label="Toggle dark mode"
           >
             {darkMode ? '☀️' : '🌙'}
           </button>
         </div>
 
-        {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Column - Writing */}
-          <div className="lg:col-span-2 space-y-6">
+        {/* Navigation Tabs */}
+        <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
+
+        {/* Content based on active tab */}
+        {activeTab === 'trends' ? (
+          <TrendsSection moodHistory={moodHistory} entries={entries} moods={MOODS} />
+        ) : activeTab === 'calendar' ? (
+          <CalendarSection entries={entries} moodHistory={moodHistory} />
+        ) : activeTab === 'mood' ? (
+          <div className="space-y-4">
             {/* Quick Mood Check-in */}
-            <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-2xl shadow-sm p-6 border border-violet-200 dark:border-purple-500/50">
+            <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-xl shadow-sm p-4 border border-violet-200 dark:border-purple-500/50">
               <h2 className="text-lg font-semibold text-gray-700 dark:text-white mb-4">
                 How are you feeling right now?
               </h2>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2">
                 {MOODS.map((mood) => {
                   const todayMood = moodHistory.find(m => {
                     const moodDate = new Date(m.date)
@@ -430,7 +439,7 @@ function App() {
                       key={mood.id}
                       onClick={() => handleSaveMood(mood.id)}
                       title={mood.label}
-                      className={`w-14 h-14 text-2xl rounded-xl border-2 transition-all duration-300 hover:scale-110 hover:shadow-sm ${
+                      className={`w-12 h-12 text-xl rounded-xl border-2 transition-all duration-300 hover:scale-110 hover:shadow-sm ${
                         todayMood
                           ? 'border-fuchsia-500 bg-fuchsia-100 dark:bg-fuchsia-900/70 shadow-sm'
                           : 'border-transparent bg-violet-100 dark:bg-purple-900/40 hover:bg-purple-100 dark:hover:bg-purple-900/60'
@@ -443,71 +452,102 @@ function App() {
               </div>
             </div>
 
-            {/* Journal Entry */}
-            <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-2xl shadow-sm p-6 border border-violet-200 dark:border-purple-500/50">
-              <h2 className="text-lg font-semibold text-gray-700 dark:text-white mb-4">What's on your mind?</h2>
-              <JournalEntryForm
-                moods={MOODS}
-                tags={TAGS}
-                onSaveEntry={handleSaveEntry}
-              />
-            </div>
-
-            {/* Recent Memories */}
-            <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-2xl shadow-sm p-6 border border-violet-200 dark:border-purple-500/50">
-              <h2 className="text-lg font-semibold text-gray-700 dark:text-white mb-4">Recent Memories</h2>
-              <div className="space-y-3 max-h-96 overflow-y-auto">
-                {entries.length === 0 ? (
-                  <p className="text-gray-400 dark:text-purple-300 text-center py-8">
-                    Your memories will appear here. Start writing!
-                  </p>
-                ) : (
-                  entries.slice(0, 5).map((entry) => (
-                    <MemoryCard
-                      key={entry.id}
-                      entry={entry}
-                      moods={MOODS}
-                      tags={TAGS}
-                      onDelete={handleDeleteEntry}
-                    />
-                  ))
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column - Insights */}
-          <div className="space-y-6">
-            {/* Daily Inspiration */}
-            <QuoteCard />
-
             {/* This Week's Mood */}
-            <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-2xl shadow-sm p-6 border border-violet-200 dark:border-purple-500/50">
+            <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-xl shadow-sm p-4 border border-violet-200 dark:border-purple-500/50">
               <h2 className="text-lg font-semibold text-gray-700 dark:text-white mb-4">This Week's Journey</h2>
               <WeeklyMood moodHistory={moodHistory} moods={MOODS} />
             </div>
 
             {/* Quick Insights */}
-            <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-2xl shadow-sm p-6 border border-violet-200 dark:border-purple-500/50">
+            <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-xl shadow-sm p-4 border border-violet-200 dark:border-purple-500/50">
               <h2 className="text-lg font-semibold text-gray-700 dark:text-white mb-4">Insights</h2>
               <QuickInsights moodHistory={moodHistory} entries={entries} moods={MOODS} />
             </div>
-
-            {/* View Calendar Button */}
-            <button
-              onClick={() => setShowCalendar(!showCalendar)}
-              className="w-full bg-linear-to-r from-violet-100 to-purple-100 dark:from-purple-900/40 dark:to-fuchsia-900/40 hover:from-violet-200 hover:to-purple-200 dark:hover:from-purple-900/60 dark:hover:to-fuchsia-900/60 border border-violet-200 dark:border-purple-500/50 text-gray-700 dark:text-purple-200 font-medium py-3 px-4 rounded-xl transition-all duration-300"
-            >
-              {showCalendar ? '📅 Hide Calendar' : '📅 View Calendar'}
-            </button>
-
-            {showCalendar && (
-              <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-2xl shadow-sm p-6 border border-violet-200 dark:border-purple-500/50">
-                <CalendarSection entries={entries} moodHistory={moodHistory} />
-              </div>
-            )}
           </div>
-        </div>
+        ) : (
+          /* Default - Journal Tab */
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            {/* Left Column - Mood Check-in & Journal Entry */}
+            <div className="lg:col-span-2 space-y-4">
+              {/* Quick Mood Check-in */}
+              <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-xl shadow-sm p-4 border border-violet-200 dark:border-purple-500/50">
+                <h2 className="text-base font-semibold text-gray-700 dark:text-white mb-3">
+                  How are you feeling right now?
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {MOODS.map((mood) => {
+                    const todayMood = moodHistory.find(m => {
+                      const moodDate = new Date(m.date)
+                      const today = new Date()
+                      return moodDate.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit'
+                      }) === today.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit'
+                      }) && m.mood === mood.id
+                    })
+
+                    return (
+                      <button
+                        key={mood.id}
+                        onClick={() => handleSaveMood(mood.id)}
+                        title={mood.label}
+                        className={`w-12 h-12 text-xl rounded-xl border-2 transition-all duration-300 hover:scale-110 hover:shadow-sm ${
+                          todayMood
+                            ? 'border-fuchsia-500 bg-fuchsia-100 dark:bg-fuchsia-900/70 shadow-sm'
+                            : 'border-transparent bg-violet-100 dark:bg-purple-900/40 hover:bg-purple-100 dark:hover:bg-purple-900/60'
+                        }`}
+                      >
+                        {mood.emoji}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* Journal Entry */}
+              <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-xl shadow-sm p-5 border border-violet-200 dark:border-purple-500/50">
+                <h2 className="text-base font-semibold text-gray-700 dark:text-white mb-4">What's on your mind?</h2>
+                <JournalEntryForm
+                  moods={MOODS}
+                  tags={TAGS}
+                  onSaveEntry={handleSaveEntry}
+                />
+              </div>
+            </div>
+
+            {/* Right Column - Quote & Recent Memories */}
+            <div className="space-y-4">
+              {/* Daily Inspiration */}
+              <QuoteCard />
+
+              {/* Recent Memories */}
+              <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-xl shadow-sm p-4 border border-violet-200 dark:border-purple-500/50">
+                <h2 className="text-base font-semibold text-gray-700 dark:text-white mb-3">Recent Memories</h2>
+                <div className="space-y-2 max-h-96 overflow-y-auto">
+                  {entries.length === 0 ? (
+                    <p className="text-gray-400 dark:text-purple-300 text-center py-8 text-sm">
+                      Your memories will appear here. Start writing!
+                    </p>
+                  ) : (
+                    entries.slice(0, 5).map((entry) => (
+                      <MemoryCard
+                        key={entry.id}
+                        entry={entry}
+                        moods={MOODS}
+                        tags={TAGS}
+                        onDelete={handleDeleteEntry}
+                      />
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

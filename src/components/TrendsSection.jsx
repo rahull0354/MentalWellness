@@ -240,18 +240,18 @@ function TrendsSection({ moodHistory, entries, moods }) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Mood Trends Chart */}
-      <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-2xl shadow-sm p-6 hover:shadow-md transition-all duration-300 border border-violet-200 dark:border-purple-500/50">
+      <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-xl shadow-sm p-4 hover:shadow-md transition-all duration-300 border border-violet-200 dark:border-purple-500/50">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold text-gray-700 dark:text-white">
+          <h2 className="text-lg font-semibold text-gray-700 dark:text-white">
             Mood Trends
           </h2>
           {/* View Toggle Buttons */}
-          <div className="flex gap-2 bg-violet-100 dark:bg-purple-900/40 rounded-lg p-1">
+          <div className="flex gap-1.5 bg-violet-100 dark:bg-purple-900/40 rounded-lg p-1">
             <button
               onClick={() => setViewMode('week')}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+              className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                 viewMode === 'week'
                   ? 'bg-white dark:bg-white/20 text-gray-800 dark:text-white shadow-sm'
                   : 'text-gray-600 dark:text-purple-200 hover:text-gray-800 dark:hover:text-white'
@@ -261,7 +261,7 @@ function TrendsSection({ moodHistory, entries, moods }) {
             </button>
             <button
               onClick={() => setViewMode('month')}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+              className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                 viewMode === 'month'
                   ? 'bg-white dark:bg-white/20 text-gray-800 dark:text-white shadow-sm'
                   : 'text-gray-600 dark:text-purple-200 hover:text-gray-800 dark:hover:text-white'
@@ -271,7 +271,7 @@ function TrendsSection({ moodHistory, entries, moods }) {
             </button>
           </div>
         </div>
-        <div className="h-75">
+        <div className="h-64">
           {moodHistory.length > 0 ? (
             <Line data={trendChartData} options={trendChartOptions} />
           ) : (
@@ -283,11 +283,11 @@ function TrendsSection({ moodHistory, entries, moods }) {
       </div>
 
       {/* Mood Distribution */}
-      <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-2xl shadow-sm p-6 hover:shadow-md transition-all duration-300 border border-violet-200 dark:border-purple-500/50">
+      <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-xl shadow-sm p-4 hover:shadow-md transition-all duration-300 border border-violet-200 dark:border-purple-500/50">
         <h2 className="text-xl font-semibold text-gray-700 dark:text-white mb-4">
           Mood Distribution
         </h2>
-        <div className="h-75">
+        <div className="h-64">
           {moodHistory.length > 0 ? (
             <Doughnut
               data={distributionChartData}
@@ -302,25 +302,25 @@ function TrendsSection({ moodHistory, entries, moods }) {
       </div>
 
       {/* Insights */}
-      <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-2xl shadow-sm p-6 hover:shadow-md transition-all duration-300 border border-violet-200 dark:border-purple-500/50">
+      <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-xl shadow-sm p-4 hover:shadow-md transition-all duration-300 border border-violet-200 dark:border-purple-500/50">
         <h2 className="text-xl font-semibold text-gray-700 dark:text-white mb-4">
           Insights
         </h2>
-        <div className="space-y-3">
+        <div className="space-y-2">
           {insights.length > 0 ? (
             insights.map((insight, index) => (
               <div
                 key={index}
-                className="bg-fuchsia-100 dark:bg-purple-900/40 p-4 rounded-xl border-l-4 border-fuchsia-400"
+                className="bg-fuchsia-100 dark:bg-purple-900/40 p-3 rounded-lg border-l-4 border-fuchsia-400"
               >
-                <span className="text-2xl mr-2">{insight.icon}</span>
-                <span className="text-gray-700 dark:text-purple-100">
+                <span className="text-xl mr-2">{insight.icon}</span>
+                <span className="text-gray-700 dark:text-purple-100 text-sm">
                   {insight.text}
                 </span>
               </div>
             ))
           ) : (
-            <p className="text-gray-400 dark:text-purple-300 text-center py-4">
+            <p className="text-gray-400 dark:text-purple-300 text-center py-3 text-sm">
               Your mood insights will appear here as you log more entries.
             </p>
           )}

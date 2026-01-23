@@ -71,22 +71,22 @@ function QuoteCard() {
   }, []);
 
   return (
-    <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-4 border border-violet-200 dark:border-purple-500/50 max-w-sm">
+    <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-5 border border-violet-200 dark:border-purple-500/50 w-full">
       {/* Quote with icon */}
-      <div className="flex items-start gap-2">
-        <span className="text-lg shrink-0 mt-0.5">✨</span>
+      <div className="flex items-start gap-3">
+        <span className="text-2xl shrink-0 mt-1">✨</span>
         <div className="flex-1 min-w-0">
           {isLoading ? (
-            <p className="text-gray-700 dark:text-purple-100 text-sm leading-relaxed">
+            <p className="text-gray-700 dark:text-purple-100 leading-relaxed">
               Loading...
             </p>
           ) : (
             <>
-              <p className="text-gray-700 dark:text-purple-100 text-sm leading-relaxed line-clamp-2">
+              <p className="text-gray-700 dark:text-purple-100 leading-relaxed">
                 "{quote.text}"
               </p>
               {quote.author && (
-                <p className="text-gray-500 dark:text-purple-300 text-xs mt-1">
+                <p className="text-gray-500 dark:text-purple-300 mt-2">
                   — {quote.author}
                 </p>
               )}
@@ -99,7 +99,7 @@ function QuoteCard() {
       <button
         onClick={fetchQuote}
         disabled={isLoading}
-        className="mt-3 w-full bg-linear-to-r from-violet-500 to-fuchsia-500 dark:from-violet-600 dark:to-fuchsia-600 hover:from-violet-600 hover:to-fuchsia-600 dark:hover:from-violet-700 dark:hover:to-fuchsia-700 disabled:opacity-50 text-white font-medium py-2 px-3 rounded-lg transition-all duration-300 text-sm hover:shadow-md active:scale-[0.98]"
+        className="mt-4 w-full bg-linear-to-r from-violet-500 to-fuchsia-500 dark:from-violet-600 dark:to-fuchsia-600 hover:from-violet-600 hover:to-fuchsia-600 dark:hover:from-violet-700 dark:hover:to-fuchsia-700 disabled:opacity-50 text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-300 hover:shadow-md active:scale-[0.98]"
       >
         <span className="flex items-center justify-center gap-2">
           <span>🔄</span>
