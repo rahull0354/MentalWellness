@@ -26,7 +26,7 @@ const TAGS = [
   { id: 'challenging', label: '🔥 Challenging' },
 ]
 
-// Simplified Journal Entry Form Component
+//  Journal Entry Form Component
 function JournalEntryForm({ moods, tags, onSaveEntry }) {
   const [text, setText] = useState('')
   const [selectedMood, setSelectedMood] = useState(null)
@@ -260,7 +260,6 @@ function App() {
   const [darkMode, setDarkMode] = useState(false)
   const [entries, setEntries] = useState([])
   const [moodHistory, setMoodHistory] = useState([])
-  const [showCalendar, setShowCalendar] = useState(false)
   const [activeTab, setActiveTab] = useState('journal')
   const [isInitialLoad, setIsInitialLoad] = useState(true)
 
@@ -477,47 +476,8 @@ function App() {
         ) : (
           /* Default - Journal Tab */
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            {/* Left Column - Mood Check-in & Journal Entry */}
+            {/* Left Column - Journal Entry */}
             <div className="lg:col-span-2 space-y-4">
-              {/* Quick Mood Check-in */}
-              <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-xl shadow-sm p-4 border border-violet-200 dark:border-purple-500/50">
-                <h2 className="text-base font-semibold text-gray-700 dark:text-white mb-3">
-                  How are you feeling right now?
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {MOODS.map((mood) => {
-                    const todayMood = moodHistory.find(m => {
-                      const moodDate = new Date(m.date)
-                      const today = new Date()
-                      return moodDate.toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit'
-                      }) === today.toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit'
-                      }) && m.mood === mood.id
-                    })
-
-                    return (
-                      <button
-                        key={mood.id}
-                        onClick={() => handleSaveMood(mood.id)}
-                        title={mood.label}
-                        className={`w-12 h-12 text-xl rounded-xl border-2 transition-all duration-300 hover:scale-110 hover:shadow-sm ${
-                          todayMood
-                            ? 'border-fuchsia-500 bg-fuchsia-100 dark:bg-fuchsia-900/70 shadow-sm'
-                            : 'border-transparent bg-violet-100 dark:bg-purple-900/40 hover:bg-purple-100 dark:hover:bg-purple-900/60'
-                        }`}
-                      >
-                        {mood.emoji}
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
-
               {/* Journal Entry */}
               <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-xl shadow-sm p-5 border border-violet-200 dark:border-purple-500/50">
                 <h2 className="text-base font-semibold text-gray-700 dark:text-white mb-4">What's on your mind?</h2>

@@ -138,7 +138,7 @@ function CalendarSection({ entries, moodHistory }) {
               >
                 {date ? (
                   <>
-                    <span className="text-xs">{date.getDate()}</span>
+                    <span className="text-xs text-gray-700 dark:text-white">{date.getDate()}</span>
                     {dayData?.mood && (
                       <span className="text-base">{getMoodEmoji(dayData.mood.mood)}</span>
                     )}

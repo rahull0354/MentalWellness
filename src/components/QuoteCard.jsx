@@ -7,7 +7,6 @@ function QuoteCard() {
   const fetchQuote = async () => {
     setIsLoading(true);
     try {
-      // Try fetching from ZenQuotes API
       const response = await fetch("https://dummyjson.com/quotes");
       const data = await response.json();
 
